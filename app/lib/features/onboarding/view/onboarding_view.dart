@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:svonboarding/features/onboarding/controller/onboarding_controller.dart';
-import 'package:svonboarding/features/onboarding/widgets/next_button_widget.dart';
-import 'package:svonboarding/features/onboarding/widgets/onboarding_page_widget.dart';
-import 'package:svonboarding/features/onboarding/widgets/page_indicator_widget.dart';
+import 'package:svonboarding/features/onboarding/widgets/onboarding_button.dart';
+import 'package:svonboarding/features/onboarding/widgets/onboarding_screen_widget.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
   const OnboardingView({super.key});
@@ -11,40 +10,24 @@ class OnboardingView extends GetView<OnboardingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1A1A),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: PageView.builder(
-              controller: controller.pageController,
-              itemCount: controller.pages.length,
-              itemBuilder: (context, index) {
-                return OnboardingPageWidget(
-                  model: controller.pages[index],
-                  onSkip: controller.skipOnboarding,
-                );
-              },
-            ),
+          PageView.builder(
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: Center(child: OnboardingScreenWidget()),
+              );
+            },
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 24),
-            child: Column(
-              children: [
-                Obx(
-                  () => PageIndicatorWidget(
-                    currentPage: controller.currentPage.value,
-                    totalPages: controller.pages.length,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Obx(
-                  () => NextButtonWidget(
-                    onPressed: controller.nextPage,
-                    isLastPage: controller.isLastPage,
-                  ),
-                ),
-              ],
-            ),
+          Positioned(
+            bottom: 80,
+            left: 18,
+            right: 18,
+            child: const OnboardingButton(),
           ),
         ],
       ),
