@@ -16,9 +16,7 @@ class SoftVenceOnboarding extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF1A1A1A),
         fontFamily: 'SF Pro Display',
       ),
-      initialRoute: OnboardingController.isOnboardingCompleted()
-          ? AppRoutes.home
-          : AppRoutes.onboarding,
+      initialRoute: AppRoutes.onboarding,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
     );
