@@ -5,6 +5,6 @@ class AppTheme {
   static ThemeData get theme => ThemeData(
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     primaryColor: AppColors.primaryColor,
-    fontFamily: 'SF Pro Display',
+    fontFamily: 'Display',
   );
 }
